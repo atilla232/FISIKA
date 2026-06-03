@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FisikaQuest Pro - Pemeliharaan Kuantum</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        physBg: '#080c16',
+                        physIndigo: '#4f46e5',
+                        physCyan: '#06b6d4',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Fira+Code:wght@400&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #080c16;
+            background-image: radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.12) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .code-font { font-family: 'Fira Code', monospace; }
+
+        @keyframes pop {
+            0% { transform: scale(0.98); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-pop { animation: pop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col items-center justify-center p-6">
+
+    <div class="max-w-4xl w-full animate-pop flex flex-col items-center text-center space-y-8">
+        
+        <!-- HEADER -->
+        <div class="space-y-4">
+            <div class="bg-gradient-to-tr from-indigo-600 to-cyan-500 p-4 rounded-2xl shadow-lg shadow-indigo-600/20 inline-block">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                </svg>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white">Sistem Sedang <span class="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">Pemeliharaan</span></h1>
+            <p class="text-slate-400 max-w-lg mx-auto">Kami sedang melakukan kalibrasi sistem untuk meningkatkan kualitas pengalaman belajar Anda di FisikaQuest Pro. Mohon tunggu sejenak.</p>
+        </div>
+
+        <!-- SIMULATOR MAGNET -->
+        <div class="w-full max-w-2xl bg-slate-900/40 border border-slate-800 rounded-3xl p-4 shadow-2xl backdrop-blur-md">
+            <div class="flex justify-between items-center px-2 mb-3">
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Lab Simulator Medan Magnet</span>
+                <span class="text-[10px] code-font text-cyan-400">interactive_field_v2</span>
+            </div>
+            
+            <div class="relative w-full h-[300px] bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden cursor-crosshair">
+                <canvas id="sandbox-canvas" class="w-full h-full"></canvas>
+            </div>
+            
+            <p class="text-[11px] text-slate-500 mt-4 italic">Sentuh atau gerakkan kursor di atas kanvas untuk memanipulasi medan magnet.</p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('sandbox-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = canvas.offsetWidth;
+        let height = canvas.height = canvas.offsetHeight;
+        let particles = [];
+        let magnet = { x: width / 2, y: height / 2, active: false, radius: 150, force: 0.2 };
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = canvas.offsetWidth;
+            height = canvas.height = canvas.offsetHeight;
+        });
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * width; this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5; this.vy = (Math.random() - 0.5) * 0.5;
+                this.color = Math.random() > 0.5 ? '#06b6d4' : '#4f46e5';
+            }
+            update() {
+                if (magnet.active) {
+                    const dx = magnet.x - this.x; const dy = magnet.y - this.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < magnet.radius) {
+                        this.vx += (dx / dist) * magnet.force;
+                        this.vy += (dy / dist) * magnet.force;
+                    }
+                }
+                this.x += this.vx; this.y += this.vy;
+                this.vx *= 0.99; this.vy *= 0.99;
+                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
+            }
+            draw() {
+                ctx.beginPath(); ctx.arc(this.x, this.y, 1.5, 0, Math.PI * 2);
+                ctx.fillStyle = this.color; ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) particles.push(new Particle());
+
+        canvas.addEventListener('mousemove', e => {
+            const rect = canvas.getBoundingClientRect();
+            magnet.x = e.clientX - rect.left; magnet.y = e.clientY - rect.top; magnet.active = true;
+        });
+
+        canvas.addEventListener('mouseleave', () => magnet.active = false);
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        window.onload = animate;
+    </script>
+</body>
+</html>
