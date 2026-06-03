@@ -1,0 +1,2263 @@
+<!doctype html>
+<html lang="id" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LATIHAN ASAS FISIKA KELAS 11</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              physBg: "#080c16",
+              physCard: "#0f172a",
+              physBorder: "#1e293b",
+              physIndigo: "#4f46e5",
+              physCyan: "#06b6d4",
+              physAmber: "#f59e0b",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #080c16;
+        background-image:
+          radial-gradient(
+            at 0% 0%,
+            rgba(79, 70, 229, 0.12) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 100% 100%,
+            rgba(6, 182, 212, 0.08) 0px,
+            transparent 50%
+          );
+        background-attachment: fixed;
+      }
+
+      .code-font {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Custom Scrollbar */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #0f172a;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 3px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #475569;
+      }
+
+      /* Keyless Pulse effect */
+      .pulse-orange {
+        box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+      }
+
+      /* Slide Transition Animations */
+      @keyframes pop {
+        0% {
+          transform: scale(0.98);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .animate-pop {
+        animation: pop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+    </style>
+  </head>
+  <body
+    class="text-slate-100 min-h-screen flex flex-col justify-between overflow-x-hidden">
+    <!-- HEADER INTERAKTIF -->
+    <header
+      class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50 px-4 py-3.5">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <div
+            class="bg-gradient-to-tr from-indigo-600 to-cyan-500 p-2 rounded-xl shadow-lg shadow-indigo-600/20">
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+            </svg>
+          </div>
+          <div>
+            <h1
+              class="text-lg font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              LATIHAN FISIKA
+            </h1>
+            <p class="text-xs text-slate-400 font-medium">
+              Gelombang, Bunyi, Suhu & Kalor
+            </p>
+          </div>
+        </div>
+
+        <!-- Dashboard Statistik di Atas -->
+        <div id="stats-header" class="hidden flex items-center space-x-4">
+          <div class="text-right">
+            <p
+              class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">
+              Nilai Sementara
+            </p>
+            <p id="stat-score" class="text-sm font-extrabold text-emerald-400">
+              0
+            </p>
+          </div>
+          <div class="h-8 w-px bg-slate-800"></div>
+          <div class="text-right">
+            <p
+              class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">
+              Progress Jawab
+            </p>
+            <p id="stat-answered" class="text-sm font-extrabold text-cyan-400">
+              0/0
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- AREA KONTEN UTAMA -->
+    <main class="flex-grow flex items-center justify-center p-4">
+      <div class="w-full max-w-6xl">
+        <!-- SCREEN 1: HUB MENU UTAMA -->
+        <div
+          id="screen-welcome"
+          class="bg-slate-900/40 border border-slate-800/80 rounded-3xl p-6 md:p-10 shadow-2xl animate-pop">
+          <div class="text-center max-w-3xl mx-auto mb-10">
+            <span
+              class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-widest"
+              >LATIHAN ASAS FISIKA KELAS 11</span
+            >
+            <h2
+              class="text-3xl md:text-5xl font-black mt-4 mb-4 tracking-tight text-white leading-tight">
+              LATIHAN SOAL Interaktif <br /><span
+                class="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent"
+                >Sesuai Kunci Jawaban</span
+              >
+            </h2>
+            <p class="text-slate-400 text-sm md:text-base leading-relaxed">
+              Nikmati visualisasi kuis dengan sistem navigasi multi-dimensi
+              (keyboard panah, swipe layar, panel nomor). Soal tanpa kunci
+              jawaban tetap disajikan untuk mengasah pemahaman Anda tanpa
+              memotong nilai akhir.
+            </p>
+          </div>
+
+          <!-- FORM PILIHAN & PENGATURAN -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto">
+            <!-- SISI KIRI: PROFIL & NAVIGASI (5 Kolom) -->
+            <div class="lg:col-span-5 space-y-6">
+              <div
+                class="bg-slate-950/60 border border-slate-800/80 p-6 rounded-2xl">
+                <label
+                  class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2"
+                  for="player-name"
+                  >Nama Peserta :</label
+                >
+                <input
+                  type="text"
+                  id="player-name"
+                  value="Isi Nama"
+                  class="w-full bg-slate-900 border border-slate-800 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-xl py-3 px-4 text-white font-semibold outline-none transition-all"
+                  placeholder="Ketik nama Anda..." />
+                <p class="text-[11px] text-slate-500 mt-2">
+                  Nama akan tercetak pada lembar hasil.
+                </p>
+              </div>
+
+              <!-- Petunjuk Kontrol -->
+              <div
+                class="bg-slate-950/60 border border-slate-800/80 p-5 rounded-2xl space-y-3.5">
+                <h3
+                  class="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center">
+                  <span class="text-indigo-400 mr-2">🎮</span> Panduan Kontrol
+                  Pintar
+                </h3>
+                <div class="space-y-2.5 text-xs text-slate-300">
+                  <div class="flex items-center space-x-2.5">
+                    <span
+                      class="bg-slate-900 border border-slate-700 px-2 py-1 rounded text-[10px] code-font font-bold text-indigo-400 shadow-sm"
+                      >←</span
+                    >
+                    <span>Kembali ke soal sebelumnya</span>
+                  </div>
+                  <div class="flex items-center space-x-2.5">
+                    <span
+                      class="bg-slate-900 border border-slate-700 px-2 py-1 rounded text-[10px] code-font font-bold text-indigo-400 shadow-sm"
+                      >→</span
+                    >
+                    <span>Lewati / Lanjut ke soal berikutnya</span>
+                  </div>
+                  <div
+                    class="flex items-center space-x-2.5 bg-indigo-500/5 p-2 rounded border border-indigo-500/10">
+                    <span
+                      class="bg-indigo-600 px-2 py-1 rounded text-[10px] code-font font-bold text-white shadow-sm"
+                      >A s.d E</span
+                    >
+                    <span class="font-medium text-indigo-300"
+                      >Pilih jawaban lewat keyboard langsung!</span
+                    >
+                  </div>
+                  <div class="flex items-center space-x-2.5">
+                    <span
+                      class="bg-slate-900 border border-slate-700 px-2 py-1 rounded text-[10px] code-font font-bold text-cyan-400 shadow-sm"
+                      >Geser Layar</span
+                    >
+                    <span>Swipe kiri / kanan di HP untuk navigasi</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SISI KANAN: PILIHAN ALUR BELAJAR (7 Kolom) -->
+            <div
+              class="lg:col-span-7 bg-slate-950/60 border border-slate-800/80 p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <h3
+                  class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
+                  Pilih Skenario Evaluasi :
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                  <!-- Mode Campur Berurutan -->
+                  <button
+                    onclick="selectScenario('sequential')"
+                    id="btn-mode-seq"
+                    class="scenario-btn border-2 border-indigo-500 bg-indigo-600/10 text-indigo-200 p-4 rounded-xl text-left transition-all hover:bg-indigo-600/5">
+                    <p
+                      class="font-bold text-sm text-indigo-400 flex items-center">
+                      <span class="mr-1.5">🗂️</span> Campur (Sesuai Urutan)
+                    </p>
+                    <p class="text-[11px] text-slate-400 mt-1">
+                      Menggabungkan semua bab berurutan dari halaman pertama
+                      hingga akhir dokumen.
+                    </p>
+                  </button>
+
+                  <!-- Mode Campur Diacak -->
+                  <button
+                    onclick="selectScenario('shuffled')"
+                    id="btn-mode-shuf"
+                    class="scenario-btn border border-slate-800 bg-slate-900/30 text-slate-400 p-4 rounded-xl text-left transition-all hover:bg-slate-800/60 hover:text-slate-200">
+                    <p class="font-bold text-sm flex items-center">
+                      <span class="mr-1.5">🌀</span> Campur (Diacak)
+                    </p>
+                    <p class="text-[11px] text-slate-400 mt-1">
+                      Menggabungkan seluruh bab lalu diacak total untuk
+                      tantangan dinamis.
+                    </p>
+                  </button>
+                </div>
+
+                <h4
+                  class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+                  Atau Evaluasi per Bab :
+                </h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  <button
+                    onclick="selectScenario('materi_1')"
+                    id="btn-mode-m1"
+                    class="scenario-btn text-xs font-bold py-2.5 px-3 rounded-lg border border-slate-800 bg-slate-900/30 text-slate-300 transition-all hover:bg-slate-800/60 text-center">
+                    Materi 1: Gelombang
+                  </button>
+                  <button
+                    onclick="selectScenario('materi_2')"
+                    id="btn-mode-m2"
+                    class="scenario-btn text-xs font-bold py-2.5 px-3 rounded-lg border border-slate-800 bg-slate-900/30 text-slate-300 transition-all hover:bg-slate-800/60 text-center">
+                    Materi 2: Bunyi
+                  </button>
+                  <button
+                    onclick="selectScenario('materi_3')"
+                    id="btn-mode-m3"
+                    class="scenario-btn text-xs font-bold py-2.5 px-3 rounded-lg border border-slate-800 bg-slate-900/30 text-slate-300 transition-all hover:bg-slate-800/60 text-center">
+                    Materi 3: Suhu & Kalor
+                  </button>
+                  <button
+                    onclick="selectScenario('uji_komp')"
+                    id="btn-mode-uj"
+                    class="scenario-btn text-xs font-bold py-2.5 px-3 rounded-lg border border-slate-800 bg-slate-900/30 text-slate-300 transition-all hover:bg-slate-800/60 text-center">
+                    Uji Kompetensi
+                  </button>
+                  <button
+                    onclick="selectScenario('hal_163')"
+                    id="btn-mode-h1"
+                    class="scenario-btn text-xs font-bold py-2.5 px-3 rounded-lg border border-slate-800 bg-slate-900/30 text-slate-300 transition-all hover:bg-slate-800/60 text-center col-span-2 sm:col-span-1">
+                    Halaman 163 - 164
+                  </button>
+                </div>
+              </div>
+
+              <!-- Tombol Mulai -->
+              <div class="text-center mt-8 pt-4 border-t border-slate-800/50">
+                <button
+                  onclick="startGame()"
+                  class="glow-btn w-full bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-extrabold py-3.5 rounded-xl shadow-lg transition-all text-xs tracking-widest uppercase hover:-translate-y-0.5 active:translate-y-0">
+                  Mulai Simulasi Kuis 🚀
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCREEN 2: GAMEPLAY (SOAL, JAWABAN, PALET) -->
+        <div
+          id="screen-game"
+          class="hidden grid grid-cols-1 lg:grid-cols-12 gap-6 animate-pop">
+          <!-- SISI KIRI: DISPLAY SOAL & OPSI (8 Kolom) -->
+          <div class="lg:col-span-8 space-y-4">
+            <div
+              id="swipe-container"
+              class="bg-slate-900/40 border border-slate-800 rounded-3xl p-5 md:p-8 shadow-xl relative overflow-hidden select-none">
+              <!-- Top Accent Line -->
+              <div
+                class="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500"></div>
+
+              <!-- Header Soal Aktif -->
+              <div
+                class="flex items-center justify-between gap-3 mb-5 border-b border-slate-800/60 pb-3">
+                <div class="flex items-center space-x-2">
+                  <span
+                    id="game-cat-badge"
+                    class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider"
+                    >Materi 1</span
+                  >
+                  <span
+                    id="game-keyless-badge"
+                    class="hidden bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider flex items-center">
+                    ⚠️ Belum Ada Kunci
+                  </span>
+                </div>
+                <div
+                  class="text-xs text-slate-400 font-semibold bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">
+                  NO. ASLI PDF:
+                  <span id="game-orig-num" class="text-cyan-400 font-extrabold"
+                    >41</span
+                  >
+                </div>
+              </div>
+
+              <!-- Area Pertanyaan -->
+              <div
+                class="bg-slate-950/70 border border-slate-800/80 p-5 rounded-2xl mb-6 relative">
+                <p
+                  id="game-question-text"
+                  class="text-sm md:text-base font-semibold leading-relaxed text-slate-100">
+                  Memuat data pertanyaan...
+                </p>
+              </div>
+
+              <!-- Grid Opsi Jawaban -->
+              <div id="game-options-container" class="space-y-3">
+                <!-- Diisi otomatis oleh Javascript -->
+              </div>
+            </div>
+
+            <!-- Navigasi Bawah -->
+            <div
+              class="flex justify-between items-center bg-slate-950/40 border border-slate-800/60 p-4 rounded-2xl">
+              <button
+                id="btn-action-back"
+                onclick="prevQuestion()"
+                class="flex items-center space-x-2 border border-slate-800 bg-slate-900/50 hover:bg-slate-800 text-slate-300 font-bold py-2.5 px-5 rounded-xl text-xs transition-all disabled:opacity-20 disabled:pointer-events-none">
+                <span class="code-font">←</span> <span>Kembali</span>
+              </button>
+
+              <div
+                class="hidden md:flex items-center space-x-1.5 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                <span>Tekan A - E atau Angka 1 - 5 Untuk Memilih</span>
+              </div>
+
+              <button
+                id="btn-action-skip"
+                onclick="skipQuestion()"
+                class="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-2.5 px-5 rounded-xl text-xs transition-all">
+                <span>Lewati</span> <span class="code-font">→</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- SISI KANAN: PALET INTERAKTIF (4 Kolom) -->
+          <div class="lg:col-span-4 space-y-4">
+            <div
+              class="bg-slate-900/40 border border-slate-800 rounded-3xl p-5 shadow-xl flex flex-col justify-between h-full min-h-[400px]">
+              <div>
+                <div
+                  class="border-b border-slate-800 pb-3 mb-4 flex justify-between items-center">
+                  <div>
+                    <h3
+                      class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center">
+                      <span class="text-indigo-400 mr-1.5">🎛️</span> Palet
+                      Navigasi Soal
+                    </h3>
+                    <p class="text-[10px] text-slate-500 mt-0.5">
+                      Lompat langsung ke soal pilihan Anda.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Kisi Nomor Palet -->
+                <div
+                  id="game-palette-grid"
+                  class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-4 gap-1.5 max-h-[300px] overflow-y-auto custom-scrollbar pr-1">
+                  <!-- Diisi otomatis -->
+                </div>
+              </div>
+
+              <!-- Legenda Warna Palet -->
+              <div class="mt-6 pt-4 border-t border-slate-800/60 space-y-3">
+                <h4
+                  class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                  Keterangan Warna :
+                </h4>
+                <div class="grid grid-cols-2 gap-2 text-[10px]">
+                  <div class="flex items-center space-x-2 text-slate-400">
+                    <span
+                      class="w-3 h-3 rounded bg-slate-950 border border-slate-800 block"></span>
+                    <span>Belum Dibuka</span>
+                  </div>
+                  <div class="flex items-center space-x-2 text-indigo-400">
+                    <span
+                      class="w-3 h-3 rounded bg-indigo-500/20 border border-indigo-500 block animate-pulse"></span>
+                    <span>Sedang Aktif</span>
+                  </div>
+                  <div class="flex items-center space-x-2 text-emerald-400">
+                    <span
+                      class="w-3 h-3 rounded bg-emerald-500/10 border border-emerald-500 block"></span>
+                    <span>Sudah Dijawab</span>
+                  </div>
+                  <div class="flex items-center space-x-2 text-amber-500">
+                    <span
+                      class="w-3 h-3 rounded bg-amber-500/10 border border-amber-500 block"></span>
+                    <span>Kosong / Dilewati</span>
+                  </div>
+                </div>
+
+                <button
+                  onclick="confirmEndSession()"
+                  class="w-full mt-4 bg-gradient-to-r from-red-600/80 to-rose-600/80 hover:from-red-600 hover:to-rose-600 text-white font-extrabold py-3 rounded-xl text-xs transition-all tracking-widest uppercase shadow-lg shadow-red-950/20">
+                  Selesaikan Sesi Kuis 🏁
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCREEN 3: LAPORAN EVALUASI AKHIR -->
+        <div
+          id="screen-result"
+          class="hidden bg-slate-900/40 border border-slate-800 rounded-3xl p-6 md:p-10 shadow-2xl animate-pop">
+          <div class="text-center mb-8">
+            <span
+              class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-widest"
+              >Lembar Hasil Selesai</span
+            >
+            <h2 class="text-3xl md:text-4xl font-extrabold mt-3 text-white">
+              Analisis Skor Pembelajaran
+            </h2>
+            <p class="text-slate-400 text-sm mt-1">
+              Selamat
+              <span id="res-name" class="text-indigo-400 font-bold"></span>,
+              lembar kerja Anda telah dinilai secara otomatis.
+            </p>
+          </div>
+
+          <!-- Dashboard Hasil Utama -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- Nilai Akhir -->
+            <div
+              class="bg-slate-950/60 border border-slate-800 p-6 rounded-2xl text-center flex flex-col justify-center items-center shadow-lg">
+              <span
+                class="text-xs font-bold text-slate-500 uppercase tracking-widest"
+                >Skor Akhir Fisika</span
+              >
+              <div class="relative flex items-center justify-center my-3">
+                <span
+                  id="res-final-score"
+                  class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400"
+                  >0</span
+                >
+                <span class="text-sm text-slate-500 ml-1">/100</span>
+              </div>
+              <span id="res-accuracy" class="text-xs text-slate-400"
+                >Akurasi Jawaban Dinilai: 0%</span
+              >
+            </div>
+
+            <!-- Statistik Jawaban -->
+            <div
+              class="bg-slate-950/60 border border-slate-800 p-6 rounded-2xl flex flex-col justify-center shadow-lg space-y-3.5">
+              <div
+                class="flex justify-between border-b border-slate-800 pb-1.5 text-xs text-slate-300">
+                <span class="flex items-center"
+                  ><span
+                    class="w-2.5 h-2.5 bg-indigo-500 rounded-full mr-2"></span
+                  >Total Soal Dinilai:</span
+                >
+                <strong id="res-stat-total">0</strong>
+              </div>
+              <div
+                class="flex justify-between border-b border-slate-800 pb-1.5 text-xs text-slate-300">
+                <span class="flex items-center"
+                  ><span
+                    class="w-2.5 h-2.5 bg-emerald-500 rounded-full mr-2"></span
+                  >Jawaban Benar:</span
+                >
+                <strong id="res-stat-correct" class="text-emerald-400"
+                  >0</strong
+                >
+              </div>
+              <div class="flex justify-between text-xs text-slate-300">
+                <span class="flex items-center"
+                  ><span
+                    class="w-2.5 h-2.5 bg-amber-500 rounded-full mr-2"></span
+                  >Soal Tanpa Kunci (Latihan):</span
+                >
+                <strong id="res-stat-keyless" class="text-amber-400">0</strong>
+              </div>
+            </div>
+
+            <!-- Gelar Kehormatan -->
+            <div
+              class="bg-slate-950/60 border border-slate-800 p-6 rounded-2xl text-center flex flex-col justify-center items-center shadow-lg">
+              <span
+                class="text-xs font-bold text-slate-500 uppercase tracking-widest"
+                >Pangkat Akademis</span
+              >
+              <div id="res-badge-icon" class="text-5xl my-3">👑</div>
+              <span
+                id="res-badge-title"
+                class="text-sm font-extrabold text-cyan-400"
+                >Fisikawan Ulung</span
+              >
+            </div>
+          </div>
+
+          <!-- TINJAUAN JAWABAN DETIL -->
+          <div class="mb-8">
+            <div class="flex justify-between items-center mb-3">
+              <h3
+                class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center">
+                <svg
+                  class="w-4 h-4 mr-2 text-indigo-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                </svg>
+                Tinjauan Lembar Jawaban Lengkap
+              </h3>
+              <span class="text-[10px] text-slate-500 font-bold uppercase"
+                >Gunakan scroll kebawah untuk melihat detail</span
+              >
+            </div>
+
+            <div
+              id="res-review-container"
+              class="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 max-h-80 overflow-y-auto custom-scrollbar space-y-3.5">
+              <!-- Diisi otomatis -->
+            </div>
+          </div>
+
+          <!-- Tombol Navigasi Akhir -->
+          <div class="flex flex-col sm:flex-row justify-center gap-3">
+            <button
+              onclick="restartActiveSession()"
+              class="bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-3 px-8 rounded-xl text-xs tracking-wider uppercase transition-all shadow-md shadow-indigo-600/20 hover:-translate-y-0.5 active:translate-y-0">
+              Ulangi Sesi Kuis Ini 🔁
+            </button>
+            <button
+              onclick="exitToWelcomeHub()"
+              class="border border-slate-700 hover:bg-slate-800/50 text-slate-300 font-extrabold py-3 px-8 rounded-xl text-xs tracking-wider uppercase transition-all">
+              Kembali Ke Menu Utama 🏠
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+      class="border-t border-slate-800/60 py-4 text-center text-[11px] text-slate-500 bg-slate-950/40">
+      <div
+        class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+        <p>© 2026 FISIKA KELAS 11.</p>
+        <p class="font-semibold">Dibuat oleh GEMINI AI dan Atilla</p>
+      </div>
+    </footer>
+
+    <!-- DATASET LENGKAP FISIKA DAN LOGIKA PROGRAM -->
+    <script>
+      const masterQuestions = [
+        // --- HALAMAN 163 - 164 (lanjutan2) ---
+        {
+          category: "Halaman 163-164",
+          origNum: "45",
+          q: "Sebuah pegas tanpa beban panjangnya 30 cm, bila diberikan beban sebesar 50 gram panjangnya menjadi 40 cm. Kemudian pegas itu digetarkan. Periode getaran adalah.... (diketahui g = 10 ms⁻², pi = 3,14)",
+          o: [
+            "0,001 sekon",
+            "0,002 sekon",
+            "0,314 sekon",
+            "0,628 sekon",
+            "0,942 sekon",
+          ],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "47",
+          q: "Sebuah truk memiliki massa 2400 kg ditopang oleh empat buah pegas yang memiliki konstanta gaya 16.000 N/m. Ketika truk tersebut mengisi muatan sebanyak 1,6 ton dan melewati sebuah jalan berlubang, maka waktu yang diperlukan untuk menempuh empat getaran adalah.... (diketahui g = 10 ms⁻², pi = 3,14)",
+          o: [
+            "1,57 sekon",
+            "3,14 sekon",
+            "4,71 sekon",
+            "6,28 sekon",
+            "7,85 sekon",
+          ],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "48",
+          q: "Pada getaran harmonik, jika massa beban 1 kg digantungkan pada ujung bawah pegas, periode getaran yang terbentuk 2 sekon. Jika massa beban ditambah sehingga menjadi 4 kg, maka periode getaran adalah....",
+          o: ["1/4 sekon", "1/2 sekon", "1 sekon", "4 sekon", "8 sekon"],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "49",
+          q: "Sebuah bola dengan massa 20 gram digantung pada sepotong per (pegas). Bola kemudian ditarik ke bawah dari kedudukan seimbang lalu dilepaskan, ternyata terjadi getaran dengan frekuensi 32 Hz. Jika bola tersebut diganti dengan bola lain yang massanya 80 gram, maka frekuensi yang akan terjadi adalah....",
+          o: ["64 Hz", "32 Hz", "16 Hz", "8 Hz", "4 Hz"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "50",
+          q: "Beban 75 gram digantungkan vertikal pada sebuah pegas yang bergetar dengan frekuensi 3 Hz. Bila beban tersebut dikurangi 1/3, maka frekuensi menjadi ....",
+          o: ["3,0 Hz", "3,2 Hz", "3,5 Hz", "3,7 Hz", "4,0 Hz"],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "51",
+          q: "Sebuah pegas yang memiliki periode getaran 2 sekon digantung pada sebuah lift. Percepatan gravitasi di tempat itu 9,61 ms⁻². Jika lift itu bergerak ke atas dengan percepatan 6,39 ms⁻² maka periode pegas tersebut adalah....",
+          o: [
+            "1,25 sekon",
+            "1,45 sekon",
+            "1,55 sekon",
+            "2,15 sekon",
+            "2,25 sekon",
+          ],
+          a: [], // KOSONG berdasarkan papan tulis
+          hasKey: false,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "52",
+          q: "Sebuah pegas yang memiliki periode getaran 4 sekon digantung pada atap sebuah lift. Percepatan gravitasi di tempat itu 9,61 ms⁻². Jika lift bergerak ke bawah dengan percepatan 5,61 ms⁻² maka periode pegas tersebut adalah....",
+          o: ["5,5 sekon", "5,7 sekon", "5,9 sekon", "6,2 sekon", "6,5 sekon"],
+          a: [], // KOSONG berdasarkan papan tulis
+          hasKey: false,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "53",
+          q: "Sebuah pegas yang mempunyai periode getaran 5 sekon digantung pada atap sebuah lift. Percepatan gravitasi di tempat itu 10 ms⁻². Jika lift itu bergerak dengan kecepatan tetap, maka periode pegas tersebut adalah....",
+          o: ["2 sekon", "3 sekon", "4 sekon", "5 sekon", "6 sekon"],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "54",
+          q: "Sebuah bandul (ayunan) sederhana bergetar dengan periode 1 sekon di suatu tempat yang memiliki percepatan gravitasi 9,86 ms⁻². Jika pi = 3,14 maka panjang bandul tersebut adalah....",
+          o: ["25 cm", "30 cm", "45 cm", "60 cm", "75 cm"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "55",
+          q: "Sebuah jam bandul memiliki bandul yang panjangnya 40 cm. Jika percepatan gravitasi 10 ms⁻² dan pi = 3,14 maka frekuensi bandul adalah....",
+          o: ["0,6 Hz", "0,7 Hz", "0,8 Hz", "1,2 Hz", "1,8 Hz"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "56",
+          q: "Sebuah benda yang diikat dengan seutas benang dibiarkan berayun dengan simpangan kecil. Supaya periode (waktu) ayunan bertambah besar, maka....",
+          o: [
+            "benang penggantung diperpanjang",
+            "benang penggantung diperpendek",
+            "massa benda ditambah",
+            "massa benda dikurangi",
+            "diberi simpangan awal lebih besar",
+          ],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "57",
+          q: "Dua buah bandul sederhana mempunyai panjang tali sama dan massa bandul pertama dua kali massa bandul kedua. Periode (T) kedua bandul tersebut adalah....",
+          o: ["T1 > T2", "T1 < T2", "T1 != T2", "T1/T2 = 1", "T1/T2 > 1"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "58",
+          q: "Dua ayunan sederhana masing-masing panjang talinya 16 cm dan 36 cm. Perbandingan frekuensi getaran kedua ayunan tersebut adalah....",
+          o: ["4 : 9", "9 : 4", "3 : 2", "2 : 3", "3 : 4"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Halaman 163-164",
+          origNum: "59",
+          q: "Hubungan antara periode ayunan T dengan panjang tali l sebuah bandul sederhana yang diperoleh dari suatu percobaan dinyatakan oleh grafik di samping. Hubungan ini dapat dinyatakan dengan persamaan....",
+          o: [
+            "T = 3,8 l",
+            "T = 1/3,6 l",
+            "T² = 3,6 l",
+            "T² = 1/3,6 l",
+            "T² = l",
+          ],
+          a: [2], // C
+          hasKey: true,
+        },
+
+        // --- MATERI 1 ---
+        {
+          category: "Materi 1",
+          origNum: "41",
+          q: "Gelombang air laut mendekati mercusuar dengan cepat rambat 10 m/s. Jika jarak antara dasar gelombang yang berdekatan 5 m, maka periode gelombang tersebut adalah....",
+          o: [
+            "0,25 sekon",
+            "0,40 sekon",
+            "0,50 sekon",
+            "1,0 sekon",
+            "2,0 sekon",
+          ],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "42",
+          q: "Gelombang laut bergerak mendekati pantai dengan kecepatan tetap. Tiap selang waktu 1 menit terdapat 10 gelombang yang menghempas di pantai. Jika jarak antara puncak dan dasar gelombang berdekatan 6 m, maka cepat rambat gelombang laut adalah ....",
+          o: ["1 ms⁻¹", "2 ms⁻¹", "3 ms⁻¹", "4 ms⁻¹", "5 ms⁻¹"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "43",
+          q: "Jarak antara dua puncak gelombang berurutan adalah 10 m. Jika gelombang tersebut mempunyai kecepatan 16 m/s maka frekuensi gelombang tersebut adalah....",
+          o: ["0,2 Hz", "0,4 Hz", "0,8 Hz", "1,6 Hz", "3,2 Hz"],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "44",
+          q: "Gelombang transversal pada permukaan air merambat dengan kecepatan 40 m/s. Bila panjang gelombangnya 2 meter, maka periode gelombang tersebut adalah....",
+          o: ["0,05 sekon", "0,5 sekon", "5 sekon", "20 sekon", "80 sekon"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "45",
+          q: "Pada permukaan suatu danau terdapat dua buah gabus yang terpisah satu sama lain sejauh 60 cm. Kedua gabus tersebut turun naik bersama permukaan air dengan frekuensi 2 getaran per detik. Bila sebuah gabus berada di puncak bukit gelombang, yang lainnya berada di lembah gelombang, sedangkan diantara kedua gabus itu terdapat satu bukit dan satu lembah gelombang. Cepat rambat gelombang tersebut adalah....",
+          o: ["20 cm/s", "30 cm/s", "80 cm/s", "120 cm/s", "240 cm/s"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "46",
+          q: "Pada seutas tali yang panjangnya 1 meter, kedua ujungnya dipegang kuat-kuat. Bagian tengah tali digetarkan sehingga terbentuk 4 buah perut gelombang. Panjang gelombang yang terbentuk adalah....",
+          o: ["100 cm", "50 cm", "25 cm", "12,5 cm", "6,5 cm"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "47",
+          q: "Salah satu ujung dari seutas tali digetarkan dengan periode 2/5 sekon. Jika gelombang berjalan yang terjadi merambat dengan cepat rambat 10 m/s, maka jumlah gelombang yang terjadi sampai jarak 24 meter dari ujung yang digetarkan adalah....",
+          o: ["2", "3", "4", "5", "6"],
+          a: [4], // E
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "48",
+          q: " sebuah sumber getar menghasilkan gelombang longitudinal dengan frekuensi 120 getaran per menit dan cepat rambat 340 m/s. Panjang gelombang yang dihasilkan oleh sumber getar ini adalah....",
+          o: ["85 m", "170 m", "200 m", "340 m", "580 m"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "49",
+          q: "Sebuah slinki menghasilkan gelombang longitudinal dengan jarak antara rapatan dan renggangan yang berdekatan 10 cm. Jika frekuensi gelombang 50 Hz, maka cepat rambat gelombang longitudinal tersebut adalah....",
+          o: ["10 ms⁻¹", "20 ms⁻¹", "30 ms⁻¹", "35 ms⁻¹", "40 ms⁻¹"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "51",
+          q: "Sebuah gelombang transversal mempunyai periode 4 sekon. Jika jarak antara dua titik berurutan yang mempunyai fase sama adalah 8 cm, maka cepat rambat gelombang itu adalah....",
+          o: ["1 cm/s", "2 cm/s", "3 cm/s", "4 cm/s", "5 cm/s"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "54",
+          q: "Dua gelombang laut A dan B masing-masing mempunyai amplitudo 1,6 meter dan 0,8 meter. Jika kedua gelombang itu bergerak dengan frekuensi sama, maka perbandingan energi yang dibawa oleh gelombang A dan B adalah....",
+          o: ["2 : 3", "3 : 4", "4 : 1", "4 : 5", "9 : 1"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "58",
+          q: "Sebuah gelombang dengan muka gelombang datang yang dihasilkan oleh batang penggetar berfrekuensi 40 Hz, datang dengan cepat rambat gelombang 4√2 ms⁻¹ pada bidang batas dua medium dengan sudut datang 45°. Ketika memasuki medium 2, gelombang dipatahkan dengan sudut bias 30°. Cepat rambat dan panjang gelombang pada medium 2 adalah....",
+          o: [
+            "v = 2 ms⁻¹ dan lambda = 0,3 m",
+            "v = 3 ms⁻¹ dan lambda = 0,2 m",
+            "v = 4 ms⁻¹ dan lambda = 0,1 m",
+            "v = 2 ms⁻¹ dan lambda = 0,2 m",
+            "v = 3 ms⁻¹ dan lambda = 0,1 m",
+          ],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "61",
+          q: "Sebuah garputala digetarkan pada dawai sehingga terjadi gelombang stasioner seperti gambar di samping (panjang dawai = 1,2 m, frekuensi = 340 Hz). Cepat rambat gelombang pada dawai adalah ....",
+          o: ["102 m/s", "204 m/s", "306 m/s", "408 m/s", "510 m/s"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "62",
+          q: "Pada seutas dawai yang panjang 0,5 meter terbentuk empat buah gelombang berdiri ketika digetarkan dengan frekuensi 32 Hz. Cepat rambat gelombang tersebut adalah ....",
+          o: ["0,4 m/s", "0,8 m/s", "1,0 m/s", "2,0 m/s", "4,0 m/s"],
+          a: [1, 4], // E/B (Menerima dua opsi sesuai catatan ragu papan tulis)
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "64",
+          q: "Pada tali yang panjangnya 2 meter dan ujungnya terikat pada tiang (ujung tetap) ditimbulkan gelombang stasioner. Jika terbentuk 5 gelombang penuh, maka letak perut yang kedua dihitung dari ujung terikat adalah....",
+          o: ["0,10 m", "0,30 m", "0,50 m", "0,60 m", "0,70 m"],
+          a: [1, 2], // C/B (Menerima dua opsi sesuai catatan ragu papan tulis)
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "65",
+          q: "Seutas tali panjangnya 40 m digetarkan sehingga terbentuk gelombang transversal dengan cepat rambat 50 m/s. Jika gaya tegangan tali tersebut 2,5 N, maka massa tali adalah....",
+          o: ["0,012 kg", "0,09 kg", "0,08 kg", "0,04 kg", "0,03 kg"],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "66",
+          q: "Pada seutas dawai yang panjangnya 2 meter dan massanya 10 gram terjadi perambatan gelombang transversal dengan cepat rambat 10 m/s. Gaya tegangan tali tersebut adalah....",
+          o: ["0,25 N", "0,5 N", "1,0 N", "2,0 N", "2,5 N"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "67",
+          q: "Sebuah gelombang transversal pada tali mula-mula mempunyai cepat rambat gelombang v dan tegangan F. Apabila tegangan tali diperbesar menjadi 4 F, sedangkan panjang dan massa tali tetap, maka cepat rambat gelombang pada tali tersebut menjadi....",
+          o: ["16 v", "4 v", "2 v", "1 v", "1/2 v"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "68",
+          q: "Pada percobaan Melde diperoleh gelombang tali seperti pada gambar di samping. Jika panjang tali yang digunakan 1,5 meter, panjang gelombang pada tali tersebut adalah....",
+          o: ["0,5 m", "0,8 m", "1,5 m", "2,5 m", "3,8 m"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "69",
+          q: "Dua buah tali yang panjangnya sama ditarik oleh gaya yang sama. Massa tali pertama adalah 4 kali massa tali kedua. Tali pertama digetarkan dengan frekuensi 200 Hz sedangkan tali kedua digetarkan dengan frekuensi 400 Hz. Bila panjang gelombang pada tali pertama adalah 4 cm, maka panjang gelombang pada tali kedua adalah ....",
+          o: ["1 cm", "2 cm", "4 cm", "8 cm", "16 cm"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 1",
+          origNum: "70",
+          q: "Pada percobaan Melde digunakan seutas benang panjangnya 2 meter dan massanya 10 gram. Jika beban yang digunakan pada percobaan itu 200 gram dan percepatan gravitasi 10 m/s², maka cepat rambat gelombang transversal pada benang adalah ....",
+          o: ["5 ms⁻¹", "10 ms⁻¹", "15 ms⁻¹", "20 ms⁻¹", "24 ms⁻¹"],
+          a: [3], // D
+          hasKey: true,
+        },
+
+        // --- MATERI 2 ---
+        {
+          category: "Materi 2",
+          origNum: "38",
+          q: "Gelombang bunyi dengan frekuensi 256 Hz merambat di udara dengan kecepatan 330 m/s. Gelombang bunyi dengan frekuensi 512 Hz di udara akan merambat dengan kecepatan ....",
+          o: ["82,5 m/s", "165 m/s", "330 m/s", "660 m/s", "1320 m/s"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 2",
+          origNum: "39",
+          q: "Pada suatu saat terlihat kilat dan 10 sekon kemudian terdengar suara gunturnya. Bila cepat rambat cahaya 3.10⁸ m/s dan cepat rambat bunyi di udara 340 m/s, maka jarak tempat asal kilat dan pengamatan adalah ....",
+          o: ["34 m", "3400 m", "10.200 m", "3.10⁸ m", "3.10⁹ m"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 2",
+          origNum: "40",
+          q: "Di suatu lembah, seseorang membunyikan petasan. Dua sekon kemudian ia mendengar gema dari salah satu arah, dan dua sekon berikutnya lagi ia mendengar gema dari arah yang berlawanan. Jika cepat rambat bunyi di udara 340 m/s, maka lebar lembah itu adalah ....",
+          o: ["680 m", "1020 m", "1360 m", "1500 m", "2040 m"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 2",
+          origNum: "41",
+          q: "Seseorang berdiri pada jarak tertentu dari tembok yang mampu memantulkan gema. Untuk mengucapkan satu suku kata, orang tersebut memerlukan waktu 1/5 sekon. Pada saat itu kecepatan penjalaran bunyi 340 m/s. Agar terdengar gema dari suku kata yang diucapkan, orang dan tembok paling sedikit harus berjarak.....",
+          o: ["6,8 m", "17 m", "34 m", "136 m", "340 m"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 2",
+          origNum: "42",
+          q: "Untuk mengukur kedalaman air laut digunakan alat fathometer. Alat ini mencatat selang waktu 6 sekon mulai dari pulsa ultrasonik dikirim sampai diterima kembali. Jika cepat rambat bunyi dalam air 1600 m/s, maka kedalaman air laut itu adalah ....",
+          o: ["3000 m", "4000 m", "5000 m", "6000 m", "7000 m"],
+          a: [3], // D (Sesuai catatan papan tulis memilih opsi terdekat D)
+          hasKey: true,
+        },
+        {
+          category: "Materi 2",
+          origNum: "48",
+          q: "Sebuah sumber bunyi bergerak dengan kecepatan 10m/s mendekati seorang pendengar diam. Pendengar tersebut mendengar dengan frekuensi 1020 Hz. Bila cepat rambat bunyi di udara 340 m/s, frekuensi sumber bunyi tersebut adalah ....",
+          o: ["990 Hz", "1000 Hz", "1100 Hz", "1200 Hz", "1300 Hz"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Materi 2",
+          origNum: "49",
+          q: "Suatu sumber bunyi berfrekuensi 350Hz, bergerak dengan kecepatan 10 m/s menjauhi seorang pendengar yang diam. Jika cepat rambat bunyi 340 m/s, maka frekuensi gelombang bunyi yang terdengar adalah ...",
+          o: ["330 Hz", "340 Hz", "400 Hz", "410 Hz", "420 Hz"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 2",
+          origNum: "50",
+          q: "Sebuah sumber bunyi dan seorang pendengar bergerak saling mendekati dengan kecepatan masing-masing 40 m/s dan 60 m/s. Bila bunyi yang dipancarkan sumber berfrekuensi fo dan kecepatan bunyi di udara 340 m/s, maka frekuensi bunyi yang diterima oleh pendengar adalah ....",
+          o: ["4/3 fo", "3/4 fo", "3/8 fo", "fo", "1/2 fo"],
+          a: [0], // A
+          hasKey: true,
+        },
+
+        // --- MATERI 3 ---
+        {
+          category: "Materi 3",
+          origNum: "106",
+          q: "Panjang batang baja pada suhu 30°C adalah 100 cm. Ketika suhunya naik, panjang baja menjadi 100,1 cm. Jika koefisien muai panjang baja 10⁻⁵/°C maka suhu sekarang adalah ....",
+          o: ["70°C", "100°C", "130°C", "250°C", "425°C"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "107",
+          q: "Panjang batang baja rel kereta api masing-masing 10 meter dipasang pada suhu 20°C. Diharapkan pada suhu 30°C rel tersebut saling bersentuhan. Jika koefisien muai panjang baja 12.10⁻⁶/°C maka jarak antara kedua kedua batang baja yang diperlukan pada suhu 20°C adalah ....",
+          o: ["3,6 mm", "2,4 mm", "1,2 mm", "0,8 mm", "0,5 mm"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "109",
+          q: "Pada suhu 20°C, luas pelat alumunium 1 m². Jika koefisien muai panjang alumunium 24 . 10⁻⁶/°C, maka luas pelat pada suhu 120°C adalah ....",
+          o: ["1,0024 m²", "1,0032 m²", "1,0048 m²", "1,0050 m²", "1,0072 m²"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "110",
+          q: "Sebuah silinder logam pada suhu 20°C volumnya 40 cm³. Koefisien muai panjang silinder logam 2.10⁻⁶/°C. Silinder logam itu dipanaskan hingga mencapai suhu 120°C maka volum silinder itu menjadi ....",
+          o: [
+            "40,008 cm³",
+            "40,016 cm³",
+            "40,024 cm³",
+            "40,032 cm³",
+            "40,050 cm³",
+          ],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "111",
+          q: "Sebuah gelas kaca yang volumnya 50 cm³ diisi penuh dengan raksa pada suhu 20°C. Gelas tersebut dipanaskan hingga suhu gelas dan raksa naik menjadi 120°C. Jika koefisien muai panjang gelas 9.10⁻⁶/°C dan koefisien muai volum raksa 18.10⁻⁵/°C maka volum raksa yang tumpah adalah ....",
+          o: ["0,500 cm³", "0,751 cm³", "0,765 cm³", "0,815 cm³", "0,825 cm³"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "114",
+          q: "Untuk menaikkan suhu dari 28°C menjadi 38°C suatu zat cair yang massanya 0,5 kg dan kalor jenisnya 400 J kg⁻¹K⁻¹ diperlukan kalor ....",
+          o: ["0,2 kJ", "0,4 kJ", "2,0 kJ", "4,0 kJ", "4,5 kJ"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "115",
+          q: "Energi kalor yang diperlukan untuk memanaskan 500 gram air dari 30°C menjadi 80°C (kalor jenis air 4200 J kg⁻¹K⁻¹) adalah ....",
+          o: ["378 000 J", "350 000 J", "252 000 J", "152 000 J", "105 000 J"],
+          a: [4], // E
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "116",
+          q: "Dua buah bola A dan B masing-masing mempunyai massa dan suhunya 6.10⁻² kg dan 20°C. Kalor jenis bola A dan B masing-masing adalah 4,7.10² J kg⁻¹K⁻¹ dan 2,3.10² J kg⁻¹K⁻¹. Jika kedua bola dimasukkan ke dalam air hingga keduanya mempunyai suhu akhir 70°C, maka selisih kalor yang diserap kedua bola tersebut adalah ....",
+          o: [
+            "288 joule",
+            "690 joule",
+            "720 joule",
+            "1008 joule",
+            "1410 joule",
+          ],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "117",
+          q: "Dua buah bola sejenis bersuhu sama 40°C massa kedua bola masing-masing 5 gram dan 10 gram. Kedua bola itu dimasukkan ke dalam fluida, sehingga suhu kedua bola naik menjadi 50°C. Jika kalor jenis bola 2100 J kg⁻¹K⁻¹ maka selisih kalor yang diserap oleh kedua bola tersebut adalah ....",
+          o: ["25 joule", "75 joule", "105 joule", "403 joule", "425 joule"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "119",
+          q: "Diketahui titik lebur es = 0°C, kalor jenis es = 0,5 kal/g°C, kalor jenis air = 1 kal/g°C, kalor lebur es = 80 kal/g, dan 1 kalori = 4,2 joule. Kalor yang diperlukan untuk meleburkan 1 kg es bersuhu -2°C hingga seluruhnya melebur adalah ....",
+          o: [
+            "2,856 . 10⁵ joule",
+            "3,150 . 10⁵ joule",
+            "3,402 . 10⁵ joule",
+            "3,696 . 10⁵ joule",
+            "3,780 . 10⁵ joule",
+          ],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "120",
+          q: "Es massanya 100 gram bersuhu -5°C diberi kalor hingga berubah wujud menjadi air bersuhu 15°C. (kalor jenis es = 0,5 kal/g°C, kalor jenis air = 1 kal/g°C, kalor lebur es = 80 kal/g, dan 1 kalori = 4,2 joule). Berapa kalor yang diberikan pada es tersebut?",
+          o: [
+            "3,255 . 10⁴ joule",
+            "3,465 . 10⁴ joule",
+            "3,990 . 10⁴ joule",
+            "4,095 . 10⁴ joule",
+            "4,410 . 10⁴ joule",
+          ],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "121",
+          q: "Sebanyak 75 gram air yang suhunya 0°C dicampur dengan 50 gram air bersuhu 100°C maka suhu akhir campuran itu adalah ....",
+          o: ["25°C", "40°C", "60°C", "65°C", "75°C"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "122",
+          q: "Dalam sebuah botol termos terdapat 230 gram kopi pada suhu 90°C ditambahkan susu sebanyak 20 gram bersuhu 5°C. Jika dianggap tidak ada kalor yang hilang pada percampuran maupun kalor yang terserap pada botol termos dan cair = ckopi = csusu = 4180 J kg⁻¹K⁻¹, maka suhu campuran adalah ....",
+          o: ["5°C", "20°C", "47°C", "83°C", "90°C"],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "123",
+          q: "Dalam gelas berisi 200 cc air 40°C dimasukkan 40 gram es 0°C. Jika kapasitas kalor gelas 20 kal/°C, kalor lebur es = 80 kal/g, kalor jenis air = 1 kal/g°C, dan massa jenis air 1 g/cm³, maka suhu campuran adalah ....",
+          o: ["0°C", "12,6°C", "18,5°C", "21,6°C", "28,0°C"],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "124",
+          q: "a gram es -10°C dicampur dengan b gram air bersuhu 20°C. Jika suhu akhir yang dicapai 5°C, kalor lebur es = 80 kal/g, kalor jenis es = 0,5 kal/g°C, dan kalor jenis air = 1 kal/g°C, maka perbandingan a dan b adalah ....",
+          o: ["3 : 17", "1 : 6", "3 : 11", "1 : 2", "1 : 1"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "125",
+          q: "Ke dalam sebuah bejana yang berisi a gram air 30°C dimasukkan b gram es -2°C. Setelah isi bejana diaduk, ternyata semua es melebur. Bila massa bejana diabaikan, kalor lebur es = 80 kal/g, kalor jenis es = 0,5 kal/g°C, dan kalor jenis air = 1 kal/g°C maka besarnya perbandingan antara a dan b adalah ....",
+          o: ["27 : 10", "8 : 3", "10 : 27", "3 : 8", "1 : 30"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "126",
+          q: "Dalam sebuah bejana yang massanya diabaikan terdapat a gram air 42°C dicampur dengan b gram es -4°C. Setelah diaduk ternyata 50% es melebur. Jika titik lebur es = 0°C, kalor lebur es = 80 kal/g, kalor jenis es = 0,5 kal/g°C, dan kalor jenis air = 1 kal/g°C, maka perbandingan nilai a dan b adalah ....",
+          o: ["1 : 4", "1 : 2", "1 : 1", "2 : 1", "4 : 1"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "127",
+          q: "Ke dalam bejana kalorimeter dimasukkan es bersuhu -10°C dan air bersuhu 50°C hingga mencapai kesetimbangan termal dengan suhu akhir campuran 0°C dan semua es tepat mencair. Jika kapasitas kalor bejana diabaikan, maka perbandingan massa es dan air mula-mula adalah ....",
+          o: ["1 : 2", "2 : 3", "5 : 9", "4 : 5", "1 : 1"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "128",
+          q: "Air sebanyak 100 gram bersuhu 80°C dituangkan ke dalam wadah bermassa 200 gram bersuhu 20°C. Jika suhu akhir sistem adalah 60°C dan kalor jenis air 1 kal/g°C, maka kalor jenis bahan wadah tersebut sebesar ....",
+          o: [
+            "0,10 kal/g°C",
+            "0,20 kal/g°C",
+            "0,25 kal/g°C",
+            "0,40 kal/g°C",
+            "0,50 kal/g°C",
+          ],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "129",
+          q: "Proses perpindahan kalor secara konduksi pada suatu batang logam dapat dipercepat dengan cara ....",
+          o: [
+            "memperpanjang batang logam",
+            "memperkecil konstanta termal batang",
+            "memperkecil perbedaan suhu kedua ujungnya",
+            "melapisi batang dengan isolator tebal",
+            "memperbesar luas penampang batang",
+          ],
+          a: [4], // E
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "130",
+          q: "Suatu ruangan memiliki dinding kaca berukuran 2 m x 1 m dan tebalnya 5 mm. Jika perbedaan suhu antara permukaan dalam dan luar kaca adalah 2°C serta konduktivitas termal kaca 0,8 W/m·K, maka laju aliran kalor konduksi yang melewati kaca sebesar ....",
+          o: ["640 W", "320 W", "160 W", "80 W", "40 W"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "131",
+          q: "Dua batang logam P dan Q yang memiliki panjang dan luas penampang sama disambungkan secara seri. Jika konduktivitas termal batang P adalah dua kali konduktivitas termal batang Q (kP = 2kQ), dan ujung bebas P bersuhu 90°C sedangkan ujung bebas Q bersuhu 0°C, maka suhu pada titik sambungan kedua logam adalah ....",
+          o: ["30°C", "45°C", "50°C", "60°C", "75°C"],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "132",
+          q: "Dua batang logam sejenis A dan B memiliki panjang LA = 2LB dan diameter DA = 2DB. Jika kedua ujungnya mengalami perbedaan suhu yang sama, maka perbandingan laju konduksi kalor pada batang A dan B (HA : HB) adalah ....",
+          o: ["1 : 1", "2 : 1", "4 : 1", "1 : 2", "1 : 4"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "133",
+          q: "Pernyataan berikut yang berkaitan dengan laju perpindahan kalor secara konveksi yang benar adalah ....",
+          o: [
+            "berbanding terbalik dengan luas penampang aliran",
+            "hanya terjadi pada media zat padat",
+            "berbanding terbalik dengan perbedaan suhu sistem",
+            "sebanding dengan nilai koefisien konveksi fluida",
+            "tidak dipengaruhi oleh jenis fluida yang bergerak",
+          ],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "137",
+          q: "Laju energi radiasi kalor yang dipancarkan oleh permukaan suatu benda hitam berbanding lurus dengan ....",
+          o: [
+            "kuadrat suhu mutlaknya",
+            "pangkat empat suhu mutlaknya",
+            "akar pangkat dua suhu mutlaknya",
+            "volume total benda tersebut",
+            "keliling penampang benda",
+          ],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "138",
+          q: "Sebuah benda hitam memiliki emisivitas sebesar 1. Faktor utama yang membedakan daya radiasi total benda tersebut dengan benda lainnya pada suhu yang sama adalah ....",
+          o: [
+            "kapasitas kalor jenis benda",
+            "luas permukaan total efektif benda",
+            "massa total dari benda tersebut",
+            "kerapatan molekul zat penyusun",
+            "koefisien muai volume zat",
+          ],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "139",
+          q: "Suatu benda memiliki luas permukaan 20 cm² dan bersuhu mutlak T. Jika emisivitas benda tersebut adalah 0,5, energi kalor yang dipancarkan per satuan waktu sebanding dengan ....",
+          o: [
+            "5 . 10⁻⁴ T²",
+            "1 . 10⁻³ T⁴",
+            "1 . 10⁻³ T⁴ (fraksi penampang)",
+            "2 . 10⁻³ T⁴",
+            "4 . 10⁻³ T²",
+          ],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "140",
+          q: "Bola logam dengan radius R dipanaskan hingga mencapai suhu mutlak T. Jika daya radiasi yang dipancarkan bola mula-mula adalah W, kemudian bola tersebut ditarik menjadi kawat silinder panjang dengan radius mengecil namun volumenya konstan, daya radiasinya akan berubah karena dipengaruhi oleh ....",
+          o: [
+            "penurunan koefisien emisi",
+            "kenaikan massa jenis logam",
+            "penyusutan kapasitas kalor benda",
+            "penambahan luas permukaan total luarnya",
+            "perubahan tetapan Stefan-Boltzmann",
+          ],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "141",
+          q: "Daya radiasi rata-rata sebuah lampu pijar berdaya 100 W dengan suhu filamen T Kelvin. Jika filamen lampu tersebut dibuat dari bahan yang sama dengan diameter kawat yang sama namun suhunya diturunkan menjadi 0,5T, maka daya keluaran lampu pijar tersebut menjadi ....",
+          o: ["6,25 W", "12,50 W", "25,00 W", "50,00 W", "75,00 W"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "142",
+          q: "Perbandingan energi radiasi yang dipancarkan per detik oleh sebuah benda hitam pada suhu 27°C dan 327°C adalah ....",
+          o: ["1 : 16", "1 : 8", "1 : 4", "2 : 3", "3 : 4"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "143",
+          q: "Dua buah benda hitam berbentuk bola memiliki rasio jari-jari R1 : R2 = 1 : 2. Jika suhu bola pertama T1 = 400 K dan bola kedua T2 = 200 K, maka rasio daya radiasi total bola pertama dan kedua adalah ....",
+          o: ["4 : 1", "2 : 1", "1 : 1", "1 : 2", "1 : 4"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "144",
+          q: "Permukaan benda hitam bersuhu 100°C memancarkan radiasi dengan daya sebesar E. Jika suhu permukaan benda hitam itu dinaikkan hingga menjadi 300°C, maka laju pancaran radiasi kalornya menjadi ....",
+          o: ["3E", "9E", "(573/373)⁴ E", "16E", "81E"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "145",
+          q: "Laju perpindahan kalor melalui dinding rumah permanen bergantung pada nilai konduktivitas termal bahan. Hal ini merupakan aplikasi dari konsep dasar fisika materi ....",
+          o: [
+            "Radiasi benda hitam murni",
+            "Konveksi paksa fluida",
+            "Hukum pergeseran Wien",
+            "Konduksi termal linier zat padat",
+            "Kalor laten peleburan es",
+          ],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "146",
+          q: "Alat yang prinsip kerjanya dirancang khusus untuk meminimalkan perpindahan kalor secara konduksi, konveksi, maupun radiasi agar suhu di dalamnya tetap stabil adalah ....",
+          o: [
+            "Kalorimeter gas",
+            "Setrika listrik otomatis",
+            "Botol termos air panas",
+            "Radiator pendingin mobil",
+            "Panel surya fotovoltaik",
+          ],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "147",
+          q: "Peristiwa terjadinya angin laut dan angin darat di kawasan pesisir pantai merupakan contoh nyata perpindahan kalor dalam skala alamiah melalui cara ....",
+          o: [
+            "Konduksi molekuler tanah",
+            "Radiasi elektromagnetik matahari",
+            "Evaporasi uap air laut",
+            "Konveksi alami massa udara",
+            "Sublimasi kristal es",
+          ],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "148",
+          q: "Faktor-faktor di bawah ini yang memengaruhi laju perpindahan panas secara konveksi pada suatu permukaan pelat datar adalah: (1) Luas permukaan pelat, (2) Perbedaan suhu antara pelat dengan fluida sekitar, (3) Koefisien konveksi termal fluida, (4) Jenis bahan konduktor dalam pelat. Pernyataan yang benar ditunjukkan oleh nomor ....",
+          o: [
+            "1, 2, dan 4",
+            "1, 2, dan 3",
+            "2, 3, dan 4",
+            "Hanya 4",
+            "Semua benar",
+          ],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "149",
+          q: "Sebuah benda hitam pada suhu T memancarkan energi per satuan waktu sebesar Q. Jika suhunya dinaikkan menjadi 2T, maka energi radiasi yang dipancarkan tiap detik menjadi ....",
+          o: ["2 Q", "4 Q", "6 Q", "12 Q", "16 Q"],
+          a: [4], // E
+          hasKey: true,
+        },
+        {
+          category: "Materi 3",
+          origNum: "150",
+          q: "Sebuah benda dianggap hitam sempurna mempunyai luas permukaan 10 cm² dan suhunya 527°C. Jika benda tersebut ditempatkan dalam sebuah ruangan bersuhu 227°C jumlah kalor yang hilang tiap detik melalui radiasi adalah .... (tetapan Stefan Boltzmann 5,67.10⁻⁸ W m⁻²K⁻⁴)",
+          o: ["18,26 J/s", "18,76 J/s", "19,12 J/s", "19,28 J/s", "19,68 J/s"],
+          a: [4], // E
+          hasKey: true,
+        },
+
+        // --- UJI KOMPETENSI ---
+        {
+          category: "Uji Kompetensi",
+          origNum: "4",
+          q: "Pada suatu saat terlihat kilat dan 10 s kemudian terdengar suara gunturnya. Apabila kecepatan cahaya 3x10⁸ m/s dan cepat rambat bunyi 330 m/s, jarak antara tempat asal kilat dan pengamat adalah ....",
+          o: ["33 m", "880 m", "3.300 m", "3x10⁵ m", "3x10⁸ m"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "5",
+          q: "Jika untuk mengucapkan satu suku kata diperlukan 0,4 s dan kecepatan penjalaran bunyi 330 m/s, terdengar gema dari suku kata yang diucapkan oleh orang yang mengucapkannya. Jarak antara orang tersebut dengan tembok yang memantulkan suaranya adalah ....",
+          o: ["16,5 m", "33 m", "66 m", "132 m", "330 m"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "6",
+          q: "Seorang pilot menerbangkan pesawat menuju menara bandara. Pilot tersebut mendengar bunyi sirene menara dengan frekuensi 1.850 Hz. Jika sirene memancarkan bunyi dengan frekuensi 1.700 Hz, kecepatan pesawat dengan cepat rambat bunyi di udara 340 m/s adalah ....",
+          o: [
+            "160 km/jam",
+            "164 km/jam",
+            "180 km/jam",
+            "184 km/jam",
+            "200 km/jam",
+          ],
+          a: [2], // C (F-108 sesuai catatan papan tulis: Hasil hitungan Doppler 108 km/jam, tidak ada di pilihan sehingga dipilih opsi terdekat C)
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "7",
+          q: "Sumber bunyi bergerak dengan kecepatan 20 m/s menjauhi seorang pendengar yang tidak bergerak. Apabila frekuensi bunyi 360 Hz dan cepat rambat bunyi di udara 340 m/s, frekuensi sumber bunyi yang terdengar adalah ....",
+          o: ["330 Hz", "340 Hz", "350 Hz", "360 Hz", "370 Hz"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "8",
+          q: " sebuah pesawat terbang mendekati sirene yang berfrekuensi 1.000 Hz. Apabila pilot pesawat mendengar suara sirene dengan frekuensi 1.100 Hz and cepat rambat bunyi di udara 340 m/s, kecepatan pesawat tersebut adalah ....",
+          o: ["17 m/s", "34 m/s", "51 m/s", "308 m/s", "618 m/s"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "9",
+          q: "Sumber bunyi dan pendengar bergerak saling mendekati dengan kecepatan masing-masing 30 m/s dan 70 m/s. Apabila kecepatan bunyi di udara 330 m/s dan frekuensi sumber bunyi f, frekuensi yang terdengar oleh pendengar adalah ....",
+          o: ["1,33f", "0,38f", "1,40f", "0,50f", "0,75f"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "10",
+          q: "Seorang pemain sepakbola berlari dengan kecepatan 36 km/jam menuju wasit yang diam sambil membunyikan peluit berfrekuensi 680 Hz. Jika cepat rambat bunyi di udara 340 m/s frekuensi yang didengar oleh pemain tersebut adalah ....",
+          o: ["840 Hz", "720 Hz", "700 Hz", "516 Hz", "340 Hz"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "11",
+          q: "Mobil patroli polisi mengejar mobil sedan di depannya dengan kelajuan 40 m/s sambil membunyikan sirene dengan frekuensi 600 Hz. Kelajuan mobil sedan yang dikejar 30 m/s dan cepat rambat bunyi di udara 340 m/s. Frekuensi sirene mobil polisi yang didengar sopir mobil sedan adalah ....",
+          o: ["580 Hz", "600 Hz", "620 Hz", "650 Hz", "660 Hz"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "12",
+          q: "Sebuah mobil ambulans yang sedang membunyikan sirene dengan frekuensi a bergerak dengan laju b berlawanan arah menjauhi mobil sedan yang bergerak dengan laju d. Jika cepat rambat bunyi di udara v dan frekuensi yang didengar sopir sedan c, perumusan efek Doppler untuk peristiwa tersebut adalah ....",
+          o: [
+            "a = (v+d)/(v-b) * c",
+            "a = (v-d)/(v-b) * c",
+            "c = (v-d)/(v+b) * a",
+            "c = (v+d)/(v-b) * a",
+            "c = (v+d)/(v+b) * a",
+          ],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "13",
+          q: "Sebuah mobil ambulans bergerak dengan kecepatan 36 km/jam di depan sepeda motor. Pada saat mobil ambulans membunyikan sirene dengan frekuensi 1.050 Hz, pengemudi sepeda motor bergerak searah dengan mobil ambulans dengan kecepatan 54 km/jam. Jika laju bunyi di udara 340 m/s pengemudi sepeda motor akan mendengar bunyi sirene dengan frekuensi ....",
+          o: ["875 Hz", "1.020 Hz", "1.035 Hz", "1.040 Hz", "1.065 Hz"],
+          a: [4], // E
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "14",
+          q: "Seseorang berdiri diam sambil meniup peluit dengan frekuensi 680 Hz ke arah mobil yang sedang bergerak mendekati orang tersebut sambil membunyikan klakson seperti gambar berikut. Pelayangan yang terdengar antara gelombang langsung dan gelombang yang dibawa mobil adalah 20 Hz. Jika kecepatan bunyi di udara 340 m/s, kecepatan mobil adalah ....",
+          o: ["5 m/s", "10 m/s", "15 m/s", "5 km/jam", "10 km/jam"],
+          a: [0, 1], // A/B (Menerima kedua opsi sesuai catatan ragu di papan tulis)
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "15",
+          q: "Anggi berada di dalam kereta api A yang berhenti. Sebuah kereta api B bergerak mendekati kereta api A dengan kecepatan 5 m/s sambil membunyikan peluit dengan frekuensi 670 Hz. Apabila cepat rambat bunyi di udara 340 m/s, frekuensi peluit kereta api B yang didengar oleh Anggi adalah ....",
+          o: ["640 Hz", "650 Hz", "660 Hz", "670 Hz", "680 Hz"],
+          a: [4], // E
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "16",
+          q: "Sebuah mobil ambulans bergerak dengan kecepatan 10 m/s sambil membunyikan sirene dengan frekuensi 420 Hz. Seorang pengendara motor bergerak searah mobil ambulans dengan kecepatan 10 m/s. Jika cepat rambat bunyi di udara 340 m/s, frekuensi sirene yang didengar pengendara motor adalah ....",
+          o: ["375 Hz", "414 Hz", "420 Hz", "425 Hz", "440 Hz"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "17",
+          q: "Seorang anak meniup terompet dengan frekuensi 1.014 Hz sambil bergerak dengan kecepatan 2 m/s menuju Anton yang bergerak mendekatinya dengan kecepatan 3 m/s. Jika cepat rambat bunyi di udara 340 m/s, frekuensi bunyi terompet yang didengar Anton adalah ....",
+          o: ["888 Hz", "1.010 Hz", "1.016 Hz", "1.026 Hz", "1.028 Hz"],
+          a: [2], // C (F 102g sesuai catatan papan tulis: Hasil hitungan asli 1029 Hz, tidak ada di pilihan sehingga dipilih opsi terdekat C)
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "18",
+          q: "Seorang pria mengendarai sepeda motor berkecepatan 54 km/jam bergerak mendekati mobil yang membunyikan klakson. Frekuensi klakson mobil 700 Hz, terdengar oleh pengendara sepeda motor 710 Hz. Apabila cepat rambat bunyi di udara 340 m/s, kecepatan mobil adalah ....",
+          o: [
+            "10 km/jam berlawanan dengan sepeda motor",
+            "10 km/jam searah dengan sepeda motor",
+            "36 km/jam berlawanan dengan sepeda motor",
+            "36 km/jam searah dengan sepeda motor",
+            "72 km/jam berlawanan dengan sepeda motor",
+          ],
+          a: [0], // A (Sesuai catatan papan tulis memilih opsi nomor 1)
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "19",
+          q: "Sebuah sumber bunyi dengan frekuensi 800 Hz bergerak mendekati seorang pengamat dengan kecepatan 20 m/s. Kecepatan rambat bunyi di udara 340 m/s. Jika pengamat bergerak dengan kecepatan 30 m/s searah dengan gerak sumber bunyi, frekuensi yang didengar pengamat adalah ....",
+          o: ["700 Hz", "725 Hz", "750 Hz", "775 Hz", "800 Hz"],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "20",
+          q: "Suatu sumber bunyi bergerak dengan kecepatan 15 m/s menjauhi seorang pendengar yang diam. Jika frekuensi 710 Hz dan cepat rambat bunyi di udara 340 m/s, frekuensi gelombang bunyi yang terdengar adalah ....",
+          o: ["570 Hz", "630 Hz", "680 Hz", "783 Hz", "786 Hz"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "21",
+          q: "Sumber bunyi dan pendengar bergerak saling mendekati dengan kecepatan sama, yaitu 15 m/s. Jika pendengar mendengar bunyi dari sumber bunyi dengan frekuensi 710 Hz, frekuensi sumber bunyi sebenarnya adalah (cepat rambat bunyi di udara 340 m/s) ....",
+          o: ["650 Hz", "700 Hz", "780 Hz", "840 Hz", "880 Hz"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "22",
+          q: "Sebuah mobil ambulans sambil membunyikan sirene bergerak saling menjauh dengan mobil sedan yang kecepatannya 40 m/s. Jika frekuensi sirene yang didengar oleh pengemudi mobil sedan 500 Hz, frekuensi sirene yang ditimbulkan oleh mobil ambulans 600 Hz dan cepat rambat bunyi di udara 340 m/s, kecepatan mobil ambulans adalah ...... ",
+          o: ["13 m/s", "15 m/s", "20 m/s", "40 m/s", "60 m/s"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "23",
+          q: "Dua mobil A dan B memiliki kecepatan berturut-turut 20 m/s dan 50 m/s bergerak saling mendekati. Kemudian, mobil B membunyikan klakson dengan frekuensi 580 Hz. Cepat rambat bunyi di udara 340 m/s frekuensi yang didengar oleh sopir mobil A sebelum berpapasan adalah ....",
+          o: ["670 Hz", "700 Hz", "720 Hz", "760 Hz", "800 Hz"],
+          a: [2], // C
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "24",
+          q: "Seorang pemuda mengendarai motor yang bergerak dengan kecepatan 72 km/jam dan saling mendekat dengan sebuah mobil ambulans yang membunyikan sirene berfrekuensi 600 Hz. Jika cepat rambat bunyi di udara 330 m/s, frekuensi yang didengar pengendara motor 700 Hz kecepatan mobil ambulans adalah ....",
+          o: ["30 m/s", "35 m/s", "40 m/s", "50 m/s", "60 m/s"],
+          a: [0], // A
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "25",
+          q: "Pada seutas senar terbentuk tiga gelombang berdiri dengan panjang senar 50 cm dan digetarkan dengan frekuensi 24 Hz. Kecepatan gelombang transversal tersebut adalah ....",
+          o: ["0,4 m/s", "0,8 m/s", "1,0 m/s", "2,0 m/s", "4,0 m/s"],
+          a: [4], // E
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "26",
+          q: "Seutas senar dengan tegangan 50 N digetarkan sehingga frekuensi yang timbul sebesar fo. Tegangan yang dibutuhkan agar senar tersebut bergetar dengan frekuensi 2fo adalah ....",
+          o: ["25 N", "50 N", "100 N", "200 N", "400 N"],
+          a: [3], // D
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "28",
+          q: "Jika tegangan suatu senar gitar menjadi 8 kali lebih besar, nadanya mempunyai frekuensi yang ....",
+          o: [
+            "3 kali lebih tinggi",
+            "3 kali lebih rendah",
+            "8 kali lebih tinggi",
+            "8 kali lebih rendah",
+            "18 kali lebih rendah",
+          ],
+          a: [], // KOSONG berdasarkan papan tulis
+          hasKey: false,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "30",
+          q: "Pada pipa organa terbuka dengan panjang 20 cm di dalamnya terjadi 3 simpul. Dan pipa organa lain yang tertutup serta membentuk 4 titik simpul sama dengan nada pipa organa terbuka yang membentuk 3 simpul. Panjang pipa organa yang tertutup adalah ....",
+          o: ["16 cm", "20 cm", "22,5 cm", "25 cm", "25,5 cm"],
+          a: [3], // D (F-23.3 berdasarkan catatan papan tulis: Secara teoritis didapat 23,3 cm, di lembar dipilih opsi terdekat D atau 25 cm)
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "31",
+          q: "Pipa organa terbuka dan tertutup mempunyai panjang yang sama. Perbandingan frekuensi nada atas kedua pipa organa tertutup dengan pipa organa terbuka adalah ....",
+          o: ["2 : 3", "3 : 2", "3 : 5", "5 : 6", "6 : 5"],
+          a: [1], // B
+          hasKey: true,
+        },
+        {
+          category: "Uji Kompetensi",
+          origNum: "35",
+          q: "Intensitas gelombang bunyi pada suatu titik yang berjarak R dari sumber bunyi adalah I. Jika jarak titik diubah menjadi 3R, intensitasnya menjadi ....",
+          o: ["3I", "9I", "1/3 I", "1/6 I", "1/9 I"],
+          a: [4], // E (f = 1/9 I)
+          hasKey: true,
+        },
+      ];
+
+      // STATE MANAJEMEN APLIKASI
+      let activeQuestions = [];
+      let activeIndex = 0;
+      let selectedScenario = "sequential";
+      let playerAnswers = []; // array of { selectedIndex: null, status: 'unvisited'/'answered'/'skipped' }
+      let playerName = "Fisikawan Cerdas";
+
+      // TOUCH GESTURE VARIABLES
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      // INIT KETIKA DOM SELESAI LOAD
+      window.onload = function () {
+        // Pasang gesture swiping di mobile
+        const container = document.getElementById("swipe-container");
+        container.addEventListener("touchstart", (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        });
+        container.addEventListener("touchend", (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipeGesture();
+        });
+
+        // Daftarkan event keyboard untuk navigasi dan pemilihan jawaban
+        document.addEventListener("keydown", handleKeyboardInputs);
+
+        // Supaya input nama tidak men-trigger keypress navigasi kuis
+        document
+          .getElementById("player-name")
+          .addEventListener("keydown", (e) => {
+            if (
+              e.key === "ArrowLeft" ||
+              e.key === "ArrowRight" ||
+              /^[a-eA-E1-5]$/.test(e.key)
+            ) {
+              e.stopPropagation();
+            }
+          });
+      };
+
+      // PILIH SKENARIO / MATERI
+      function selectScenario(mode) {
+        selectedScenario = mode;
+        const buttons = document.querySelectorAll(".scenario-btn");
+        buttons.forEach((btn) => {
+          btn.classList.remove(
+            "border-2",
+            "border-indigo-500",
+            "bg-indigo-600/10",
+            "text-indigo-200",
+          );
+          btn.classList.add(
+            "border-slate-800",
+            "bg-slate-900/30",
+            "text-slate-400",
+          );
+        });
+
+        const modeBtnMap = {
+          sequential: "btn-mode-seq",
+          shuffled: "btn-mode-shuf",
+          materi_1: "btn-mode-m1",
+          materi_2: "btn-mode-m2",
+          materi_3: "btn-mode-m3",
+          uji_komp: "btn-mode-uj",
+          hal_163: "btn-mode-h1",
+        };
+
+        const targetBtn = document.getElementById(modeBtnMap[mode]);
+        if (targetBtn) {
+          targetBtn.classList.remove(
+            "border-slate-800",
+            "bg-slate-900/30",
+            "text-slate-400",
+          );
+          targetBtn.classList.add(
+            "border-2",
+            "border-indigo-500",
+            "bg-indigo-600/10",
+            "text-indigo-200",
+          );
+        }
+      }
+
+      // FUNGSI ACAK ARRAY (Fisher-Yates)
+      function shuffleArray(array) {
+        let cur = array.length,
+          rand;
+        while (cur !== 0) {
+          rand = Math.floor(Math.random() * cur);
+          cur--;
+          [array[cur], array[rand]] = [array[rand], array[cur]];
+        }
+        return array;
+      }
+
+      // MEMULAI PERMAINAN
+      function startGame() {
+        playerName =
+          document.getElementById("player-name").value.trim() ||
+          "Fisikawan Cerdas";
+
+        // Saring soal sesuai skenario terpilih
+        let temp = [];
+        if (selectedScenario === "sequential") {
+          temp = [...masterQuestions];
+        } else if (selectedScenario === "shuffled") {
+          temp = [...masterQuestions];
+          shuffleArray(temp);
+        } else if (selectedScenario === "materi_1") {
+          temp = masterQuestions.filter((q) => q.category === "Materi 1");
+        } else if (selectedScenario === "materi_2") {
+          temp = masterQuestions.filter((q) => q.category === "Materi 2");
+        } else if (selectedScenario === "materi_3") {
+          temp = masterQuestions.filter((q) => q.category === "Materi 3");
+        } else if (selectedScenario === "uji_komp") {
+          temp = masterQuestions.filter((q) => q.category === "Uji Kompetensi");
+        } else if (selectedScenario === "hal_163") {
+          temp = masterQuestions.filter(
+            (q) => q.category === "Halaman 163-164",
+          );
+        }
+
+        activeQuestions = temp;
+        activeIndex = 0;
+
+        // Inisialisasi status jawaban
+        playerAnswers = activeQuestions.map(() => ({
+          selectedIndex: null,
+          status: "unvisited",
+        }));
+
+        // Tampilkan Header Statistik
+        document.getElementById("stats-header").classList.remove("hidden");
+        updateTopStats();
+
+        // Sembunyikan Welcome Screen, Tampilkan Gameplay
+        document.getElementById("screen-welcome").classList.add("hidden");
+        document.getElementById("screen-game").classList.remove("hidden");
+
+        // Susun Palet Navigasi Kanan
+        buildPaletteGrid();
+
+        // Muat Pertanyaan
+        loadQuestion();
+      }
+
+      // MEMBANGUN KISI PALET SEBELAH KANAN
+      function buildPaletteGrid() {
+        const grid = document.getElementById("game-palette-grid");
+        grid.innerHTML = "";
+
+        activeQuestions.forEach((q, idx) => {
+          const itemBtn = document.createElement("button");
+          itemBtn.id = `palette-item-${idx}`;
+          itemBtn.onclick = () => jumpToQuestion(idx);
+          itemBtn.className =
+            "py-2 text-xs font-bold rounded-lg border transition-all text-center flex flex-col justify-center items-center shadow-sm";
+
+          // Indikator khusus jika soal latihan/tanpa kunci
+          const practiceIcon = q.hasKey
+            ? ""
+            : ' <span class="text-[8px] text-amber-500">❔</span>';
+
+          itemBtn.innerHTML = `
+                    <span class="text-[9px] opacity-75">Q${idx + 1}</span>
+                    <span class="text-[8px] code-font tracking-tight mt-0.5 font-semibold">#${q.origNum}${practiceIcon}</span>
+                `;
+          grid.appendChild(itemBtn);
+        });
+        updatePaletteUI();
+      }
+
+      // PERBARUI WARNA PALET BERDASARKAN STATUS
+      function updatePaletteUI() {
+        activeQuestions.forEach((_, idx) => {
+          const btn = document.getElementById(`palette-item-${idx}`);
+          if (!btn) return;
+
+          const state = playerAnswers[idx];
+
+          // Reset class dasar
+          btn.className =
+            "py-2 text-xs font-bold rounded-lg border transition-all text-center flex flex-col justify-center items-center shadow-sm duration-150 ";
+
+          if (idx === activeIndex) {
+            // Sedang Aktif
+            btn.classList.add(
+              "bg-indigo-500/25",
+              "border-indigo-500",
+              "text-indigo-200",
+              "animate-pulse",
+            );
+          } else if (state.status === "answered") {
+            // Sudah Dijawab
+            btn.classList.add(
+              "bg-emerald-500/10",
+              "border-emerald-500/80",
+              "text-emerald-300",
+            );
+          } else if (state.status === "skipped") {
+            // Dilewati (Kosong)
+            btn.classList.add(
+              "bg-amber-500/10",
+              "border-amber-500/80",
+              "text-amber-500",
+            );
+          } else {
+            // Belum Dikunjungi
+            btn.classList.add(
+              "bg-slate-950",
+              "border-slate-800",
+              "text-slate-500",
+              "hover:border-slate-700",
+            );
+          }
+        });
+      }
+
+      // MEMUAT DETAIL PERTANYAAN AKTIF
+      function loadQuestion() {
+        const currentQ = activeQuestions[activeIndex];
+
+        // Perbarui Elemen Visual Info Soal
+        document.getElementById("game-cat-badge").innerText = currentQ.category;
+        document.getElementById("game-orig-num").innerText = currentQ.origNum;
+        document.getElementById("game-question-text").innerText = currentQ.q;
+
+        // Handle badge soal tanpa kunci jawaban
+        const keylessBadge = document.getElementById("game-keyless-badge");
+        const cardBg = document.getElementById("swipe-container");
+
+        if (!currentQ.hasKey) {
+          keylessBadge.classList.remove("hidden");
+          cardBg.classList.add("pulse-orange");
+        } else {
+          keylessBadge.classList.add("hidden");
+          cardBg.classList.remove("pulse-orange");
+        }
+
+        // Render Opsi Jawaban
+        const container = document.getElementById("game-options-container");
+        container.innerHTML = "";
+
+        const activeChoice = playerAnswers[activeIndex].selectedIndex;
+
+        currentQ.o.forEach((opt, idx) => {
+          const optBtn = document.createElement("button");
+          optBtn.id = `opt-btn-${idx}`;
+          optBtn.onclick = () => selectOption(idx);
+
+          const isSelected = activeChoice === idx;
+
+          optBtn.className = isSelected
+            ? "w-full text-left bg-indigo-500/10 border-2 border-indigo-500 p-4 rounded-xl text-sm font-semibold transition-all duration-150 flex items-start space-x-3 shadow-lg relative group"
+            : "w-full text-left bg-slate-950/60 border border-slate-800 hover:border-indigo-500/60 hover:bg-slate-900/40 p-4 rounded-xl text-sm font-semibold transition-all duration-150 flex items-start space-x-3 group relative";
+
+          // Menambahkan indicator shortcut keyboard desktop
+          optBtn.innerHTML = `
+                    <span class="flex-shrink-0 w-6 h-6 rounded-md ${isSelected ? "bg-indigo-600 text-white" : "bg-slate-800 text-slate-400 group-hover:bg-indigo-600 group-hover:text-white"} flex items-center justify-center font-bold text-xs transition-colors">
+                        ${String.fromCharCode(65 + idx)}
+                    </span>
+                    <span class="${isSelected ? "text-white" : "text-slate-300 group-hover:text-white"} flex-grow transition-colors pt-0.5 pr-20">${opt}</span>
+                    <span class="hidden md:inline-block absolute right-4 top-1/2 -translate-y-1/2 text-[10px] px-2 py-0.5 rounded bg-slate-950 border border-slate-800 text-slate-500 group-hover:text-indigo-400 group-hover:border-indigo-500/30 transition-all font-mono">
+                        Tekan [${String.fromCharCode(65 + idx)}] / [${idx + 1}]
+                    </span>
+                `;
+          container.appendChild(optBtn);
+        });
+
+        // Atur status Back Button (Disable di soal pertama)
+        document.getElementById("btn-action-back").disabled = activeIndex === 0;
+
+        updatePaletteUI();
+        updateTopStats();
+      }
+
+      // MEMILIH OPSI JAWABAN
+      function selectOption(idx) {
+        // Validasi indeks opsi jika masukan keyboard out-of-range
+        const currentQ = activeQuestions[activeIndex];
+        if (!currentQ || idx < 0 || idx >= currentQ.o.length) return;
+
+        playerAnswers[activeIndex].selectedIndex = idx;
+        playerAnswers[activeIndex].status = "answered";
+
+        // Muat ulang UI agar instan terlihat terpilih
+        loadQuestion();
+
+        // Auto-advance ke soal berikutnya dengan sedikit delay
+        setTimeout(() => {
+          if (activeIndex < activeQuestions.length - 1) {
+            nextQuestion();
+          }
+        }, 250);
+      }
+
+      // KEMBALI KE SOAL SEBELUMNYA
+      function prevQuestion() {
+        if (activeIndex > 0) {
+          // Tandai sebagai skipped jika belum terjawab tapi sudah dikunjungi
+          if (playerAnswers[activeIndex].status === "unvisited") {
+            playerAnswers[activeIndex].status = "skipped";
+          }
+          activeIndex--;
+          loadQuestion();
+        }
+      }
+
+      // LEWATI ATAU LANJUTKAN SOAL
+      function skipQuestion() {
+        if (playerAnswers[activeIndex].status === "unvisited") {
+          playerAnswers[activeIndex].status = "skipped";
+        }
+
+        if (activeIndex < activeQuestions.length - 1) {
+          activeIndex++;
+          loadQuestion();
+        } else {
+          // Berputar ke soal yang belum terjawab jika sudah di ujung kuis
+          let firstEmptyIdx = playerAnswers.findIndex(
+            (ans) => ans.status === "unvisited" || ans.status === "skipped",
+          );
+          if (firstEmptyIdx !== -1 && firstEmptyIdx !== activeIndex) {
+            activeIndex = firstEmptyIdx;
+            loadQuestion();
+          } else {
+            updatePaletteUI();
+          }
+        }
+      }
+
+      // JALUR MAJU LINIER BIASA
+      function nextQuestion() {
+        if (activeIndex < activeQuestions.length - 1) {
+          activeIndex++;
+          loadQuestion();
+        }
+      }
+
+      // LOMPAT LANGSUNG KE SOAL DARI PALET
+      function jumpToQuestion(idx) {
+        if (playerAnswers[activeIndex].status === "unvisited") {
+          playerAnswers[activeIndex].status = "skipped";
+        }
+        activeIndex = idx;
+        loadQuestion();
+      }
+
+      // INPUT KEYBOARD UTAMA (NAVIGASI & JAWABAN)
+      function handleKeyboardInputs(e) {
+        if (
+          document.activeElement.tagName === "INPUT" ||
+          document.activeElement.tagName === "TEXTAREA"
+        ) {
+          return; // Jangan jalankan jika sedang menulis nama profil
+        }
+        if (
+          document.getElementById("screen-game").classList.contains("hidden")
+        ) {
+          return; // Kuis belum aktif
+        }
+
+        // 1. Logika Navigasi Panah
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          prevQuestion();
+          return;
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          skipQuestion();
+          return;
+        }
+
+        // 2. Logika Pemilihan Opsi via Keyboard (A-E atau 1-5)
+        const key = e.key.toLowerCase();
+        if (key === "a" || key === "1") {
+          e.preventDefault();
+          selectOption(0);
+        } else if (key === "b" || key === "2") {
+          e.preventDefault();
+          selectOption(1);
+        } else if (key === "c" || key === "3") {
+          e.preventDefault();
+          selectOption(2);
+        } else if (key === "d" || key === "4") {
+          e.preventDefault();
+          selectOption(3);
+        } else if (key === "e" || key === "5") {
+          e.preventDefault();
+          selectOption(4);
+        }
+      }
+
+      // NAVIGASI SWIPE GESTURE MOBILE
+      function handleSwipeGesture() {
+        const threshold = 50; // Jarak minimal sapuan (px)
+        if (touchEndX < touchStartX - threshold) {
+          // Swipe Kiri -> Maju
+          skipQuestion();
+        }
+        if (touchEndX > touchStartX + threshold) {
+          // Swipe Kanan -> Kembali
+          prevQuestion();
+        }
+      }
+
+      // UPDATE STATISTIK ATAS REAL-TIME
+      function updateTopStats() {
+        const total = activeQuestions.length;
+        if (total === 0) return;
+
+        const answeredCount = playerAnswers.filter(
+          (ans) => ans.status === "answered",
+        ).length;
+        document.getElementById("stat-answered").innerText =
+          `${answeredCount}/${total}`;
+
+        // Hitung skor sementara (hanya dari soal yang punya kunci jawaban)
+        let scoredQuestions = 0;
+        let correctCount = 0;
+
+        playerAnswers.forEach((ans, idx) => {
+          const q = activeQuestions[idx];
+          if (q.hasKey) {
+            scoredQuestions++;
+            if (ans.status === "answered" && q.a.includes(ans.selectedIndex)) {
+              correctCount++;
+            }
+          }
+        });
+
+        const currentScore =
+          scoredQuestions > 0
+            ? Math.round((correctCount / scoredQuestions) * 100)
+            : 0;
+        document.getElementById("stat-score").innerText =
+          `${currentScore} / 100`;
+      }
+
+      // POP-UP KONFIRMASI SEBELUM MENGAKHIRI KUIS
+      function confirmEndSession() {
+        const emptyCount = playerAnswers.filter(
+          (ans) => ans.status === "unvisited" || ans.status === "skipped",
+        ).length;
+        if (emptyCount > 0) {
+          const conf = confirm(
+            `Masih ada ${emptyCount} soal yang belum terjawab. Yakin ingin mengakhiri kuis sekarang?`,
+          );
+          if (!conf) return;
+        }
+        calculateFinalResult();
+      }
+
+      // KALKULASI HASIL DAN DISPLAY REPORT SCREEN
+      function calculateFinalResult() {
+        document.getElementById("screen-game").classList.add("hidden");
+        document.getElementById("screen-result").classList.remove("hidden");
+        document.getElementById("stats-header").classList.add("hidden");
+
+        const totalSoal = activeQuestions.length;
+        let scoredQuestions = 0;
+        let correctCount = 0;
+        let keylessCount = 0;
+
+        activeQuestions.forEach((q, idx) => {
+          if (q.hasKey) {
+            scoredQuestions++;
+            const ans = playerAnswers[idx];
+            if (ans.status === "answered" && q.a.includes(ans.selectedIndex)) {
+              correctCount++;
+            }
+          } else {
+            keylessCount++;
+          }
+        });
+
+        const finalScore =
+          scoredQuestions > 0
+            ? Math.round((correctCount / scoredQuestions) * 100)
+            : 0;
+        const accuracy =
+          scoredQuestions > 0
+            ? Math.round((correctCount / scoredQuestions) * 100)
+            : 0;
+
+        // Render ke UI
+        document.getElementById("res-name").innerText = playerName;
+        document.getElementById("res-final-score").innerText = finalScore;
+        document.getElementById("res-accuracy").innerText =
+          `Akurasi Jawaban Dinilai: ${accuracy}%`;
+        document.getElementById("res-stat-total").innerText = scoredQuestions;
+        document.getElementById("res-stat-correct").innerText = correctCount;
+        document.getElementById("res-stat-keyless").innerText = keylessCount;
+
+        // Ranks & Badge
+        let badgeIcon = "👑";
+        let badgeTitle = "Fisikawan Ulung";
+
+        if (finalScore >= 90) {
+          badgeIcon = "👑";
+          badgeTitle = "Profesor Fisika Quantum";
+        } else if (finalScore >= 75) {
+          badgeIcon = "🧙‍♂️";
+          badgeTitle = "Asisten Laboratorium Senior";
+        } else if (finalScore >= 60) {
+          badgeIcon = "🔬";
+          badgeTitle = "Peneliti Muda";
+        } else if (finalScore >= 45) {
+          badgeIcon = "📓";
+          badgeTitle = "Siswa Magang Teoretis";
+        } else {
+          badgeIcon = "🌱";
+          badgeTitle = "Pengamat Termodinamika Pemula";
+        }
+
+        document.getElementById("res-badge-icon").innerText = badgeIcon;
+        document.getElementById("res-badge-title").innerText = badgeTitle;
+
+        // Render Lembar Peninjauan Jawab Detil
+        const container = document.getElementById("res-review-container");
+        container.innerHTML = "";
+
+        activeQuestions.forEach((q, idx) => {
+          const ans = playerAnswers[idx];
+          const isAnswered = ans.selectedIndex !== null;
+
+          let isCorrect = false;
+          if (q.hasKey && isAnswered) {
+            isCorrect = q.a.includes(ans.selectedIndex);
+          }
+
+          const itemDiv = document.createElement("div");
+
+          // Atur warna pembungkus berdasarkan status
+          if (!q.hasKey) {
+            itemDiv.className =
+              "p-4 rounded-xl text-xs border border-amber-500/20 bg-amber-500/[0.02]";
+          } else if (isCorrect) {
+            itemDiv.className =
+              "p-4 rounded-xl text-xs border border-emerald-500/20 bg-emerald-500/[0.02]";
+          } else {
+            itemDiv.className =
+              "p-4 rounded-xl text-xs border border-rose-500/20 bg-rose-500/[0.02]";
+          }
+
+          // Header status info
+          let statusLabel = "";
+          if (!q.hasKey) {
+            statusLabel =
+              '<span class="text-amber-400 font-bold">LATIHAN (BELUM ADA KUNCI JAWABAN)</span>';
+          } else if (isCorrect) {
+            statusLabel =
+              '<span class="text-emerald-400 font-bold">✓ BENAR</span>';
+          } else {
+            statusLabel = `<span class="text-rose-400 font-bold">${isAnswered ? "✗ SALAH" : "✗ KOSONG / LEWAT"}</span>`;
+          }
+
+          // String Teks Pilihan User
+          const userChoiceText = isAnswered
+            ? `${String.fromCharCode(65 + ans.selectedIndex)}. ${q.o[ans.selectedIndex]}`
+            : "Tidak dijawab (Kosong)";
+
+          // String Teks Kunci Jawaban
+          let keyText = "";
+          if (!q.hasKey) {
+            keyText = "Belum memiliki kunci jawaban resmi di papan tulis.";
+          } else {
+            keyText = q.a
+              .map(
+                (keyIdx) =>
+                  `${String.fromCharCode(65 + keyIdx)}. ${q.o[keyIdx]}`,
+              )
+              .join(" ATAU ");
+          }
+
+          itemDiv.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[9px] uppercase font-extrabold text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
+                            ${q.category} • No. Asli PDF: ${q.origNum}
+                        </span>
+                        <span class="text-[10px]">${statusLabel}</span>
+                    </div>
+                    <p class="font-bold text-slate-200 mb-3">${idx + 1}. ${q.q}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2.5 border-t border-slate-800/60 text-[11px]">
+                        <div>
+                            <p class="text-slate-500 font-semibold uppercase tracking-wider text-[9px]">Jawaban Anda :</p>
+                            <p class="font-bold mt-0.5 ${!q.hasKey ? "text-amber-400" : isCorrect ? "text-emerald-400" : "text-rose-400"}">${userChoiceText}</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 font-semibold uppercase tracking-wider text-[9px]">Kunci Papan Tulis :</p>
+                            <p class="font-bold mt-0.5 text-emerald-400">${keyText}</p>
+                        </div>
+                    </div>
+                `;
+          container.appendChild(itemDiv);
+        });
+      }
+
+      // RESET DAN MAIN ULANG KUIS SAMA YANG SEDANG AKTIF
+      function restartActiveSession() {
+        document.getElementById("screen-result").classList.add("hidden");
+        startGame();
+      }
+
+      // KEMBALI KE HUB UTAMA (MENU SELEKTOR)
+      function exitToWelcomeHub() {
+        document.getElementById("screen-result").classList.add("hidden");
+        document.getElementById("screen-welcome").classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>
